@@ -41,13 +41,30 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Form submission
-    const form = document.querySelector('form');
-    if (form) {
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Thank you for your message/appointment request. We will get back to you soon!');
-            form.reset();
+    // Keep active state in sync for the home page Reviews anchor.
+    const reviewsAnchor = document.querySelector('.nav-links a[href="#reviews"]');
+    const reviewsSection = document.getElementById('reviews');
+
+    const setActiveNav = (target) => {
+        links.forEach(item => item.classList.remove('active'));
+        if (target) {
+            target.classList.add('active');
+        }
+    };
+
+    if (reviewsAnchor && reviewsSection) {
+        if (window.location.hash === '#reviews') {
+            setActiveNav(reviewsAnchor);
+        }
+
+        reviewsAnchor.addEventListener('click', () => {
+            setActiveNav(reviewsAnchor);
+        });
+
+        window.addEventListener('hashchange', () => {
+            if (window.location.hash === '#reviews') {
+                setActiveNav(reviewsAnchor);
+            }
         });
     }
 
@@ -67,4 +84,42 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     revealElements.forEach(el => revealObserver.observe(el));
+
+    // Testimonials Carousel Auto-Scroll
+    const carousel = document.querySelector('[data-testimonials-carousel]');
+    if (carousel) {
+        const track = carousel.querySelector('.testimonials-track');
+        const cards = track ? Array.from(track.children) : [];
+        if (track && cards.length && !track.dataset.cloned) {
+            cards.forEach(card => track.appendChild(card.cloneNode(true)));
+            track.dataset.cloned = 'true';
+        }
+
+        let resumeTimer;
+        const pauseCarousel = () => {
+            carousel.classList.add('is-paused');
+            if (resumeTimer) {
+                clearTimeout(resumeTimer);
+            }
+        };
+
+        const scheduleResume = () => {
+            if (resumeTimer) {
+                clearTimeout(resumeTimer);
+            }
+            resumeTimer = setTimeout(() => {
+                carousel.classList.remove('is-paused');
+            }, 700);
+        };
+
+        carousel.addEventListener('mouseenter', pauseCarousel);
+        carousel.addEventListener('mouseleave', scheduleResume);
+        carousel.addEventListener('focusin', pauseCarousel);
+        carousel.addEventListener('focusout', scheduleResume);
+        carousel.addEventListener('pointerdown', pauseCarousel);
+        carousel.addEventListener('pointerup', scheduleResume);
+        carousel.addEventListener('touchstart', pauseCarousel, { passive: true });
+        carousel.addEventListener('touchend', scheduleResume, { passive: true });
+        carousel.addEventListener('wheel', pauseCarousel, { passive: true });
+    }
 });

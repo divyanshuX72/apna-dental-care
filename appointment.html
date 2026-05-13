@@ -30,6 +30,7 @@
                 <li class="nav-item"><a href="services.html">Services</a></li>
                 <li class="nav-item"><a href="gallery.html">Gallery</a></li>
                 <li class="nav-item"><a href="contact.html">Contact</a></li>
+                <li class="nav-item"><a href="index.html#reviews" class="btn btn-outline">Reviews</a></li>
                 <li class="nav-item"><a href="appointment.html" class="btn btn-primary">Book Now</a></li>
             </ul>
             <button class="hamburger">
@@ -58,9 +59,9 @@
     <!-- Appointment Section -->
     <section class="section" style="background-color: var(--light-bg);">
         <div class="container">
-            <div class="card reveal" style="max-width: 800px; margin: 0 auto; text-align: left; padding: 50px;">
-                <h2 style="margin-bottom: 20px; text-align: center; font-size: 2.2rem;">Schedule Your Visit</h2>
-                <p style="text-align: center; margin-bottom: 40px; color: var(--text-color);">Fill out the form below
+            <div class="card reveal appointment-card" style="max-width: 800px; margin: 0 auto; text-align: left; padding: 50px;">
+                <h2 class="appointment-title" style="margin-bottom: 20px; text-align: center; font-size: 2.2rem;">Schedule Your Visit</h2>
+                <p class="appointment-subtitle" style="text-align: center; margin-bottom: 40px; color: var(--text-color);">Fill out the form below
                     and we'll confirm your appointment instantly via WhatsApp.</p>
 
                 <!-- Validation Error Banner -->
@@ -69,7 +70,7 @@
                 </div>
 
                 <form id="appointment-form" novalidate>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+                    <div class="appointment-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
                         <div class="form-group">
                             <label for="appt-name"
                                 style="display: block; margin-bottom: 10px; font-weight: 600; color: var(--accent-color);">Full
@@ -231,24 +232,26 @@
                 return `${d} ${months[parseInt(m, 10) - 1]} ${y}`;
             }
 
-            /* ── Build the WhatsApp message ── */
+            /* ── Build the WhatsApp message (UTF-8 template literal) ── */
             function buildMessage(name, phone, service, date, notes) {
-                const lines = [
-                    'Hello Apna Dental Clinic,',
-                    '',
-                    'I would like to book an appointment.',
-                    '',
-                    '*Patient Details:*',
-                    '',
-                    `👤 *Full Name:* ${name}`,
-                    `📞 *Phone Number:* ${phone}`,
-                    `🦷 *Service:* ${service}`,
-                    `📅 *Preferred Date:* ${formatDate(date)}`,
-                    `📝 *Notes:* ${notes || 'None'}`,
-                    '',
-                    'Please confirm my appointment. Thank you!'
-                ];
-                return lines.join('\n');
+                const cleanNotes = notes || 'None';
+
+                return `
+Hello Apna Dental Clinic,
+
+I would like to book an appointment.
+
+Patient Details:
+
+👤 Full Name: ${name}
+📞 Phone Number: ${phone}
+🦷 Service: ${service}
+📅 Preferred Date: ${formatDate(date)}
+📝 Notes: ${cleanNotes}
+
+Please confirm my appointment.
+Thank you!
+`;
             }
 
             /* ── Show / hide loading state ── */

@@ -95,6 +95,87 @@ img {
   margin: 0 auto 60px;
 }
 
+/* Contact Section */
+.contact-section {
+  background: var(--bg-color);
+}
+
+.contact-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.contact-title {
+  margin-bottom: 16px;
+}
+
+.contact-subtitle {
+  max-width: 760px;
+  margin: 0 auto;
+  font-size: 1.15rem;
+  color: var(--text-color);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.contact-card {
+  background: #fff;
+  border-radius: var(--radius-md);
+  padding: 26px 28px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(0, 102, 204, 0.08);
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  transition: var(--transition);
+}
+
+.contact-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.contact-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: #f0f7ff;
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.contact-card--whatsapp .contact-icon {
+  background: rgba(37, 211, 102, 0.12);
+  color: var(--whatsapp-color);
+}
+
+.contact-body h4 {
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+  color: var(--accent-color);
+}
+
+.contact-body p {
+  color: var(--text-color);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.contact-link {
+  display: inline-block;
+  margin-top: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -599,11 +680,20 @@ textarea.form-control {
   min-height: 160px;
 }
 
+/* Appointment Section */
+.appointment-card {
+  width: 100%;
+}
+
 /* Responsive */
 @media (max-width: 991px) {
   .hero-content {
     flex-direction: column;
     text-align: center;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
   }
 
   .hero-text {
@@ -638,6 +728,18 @@ textarea.form-control {
   .map-container iframe {
     height: 400px;
   }
+
+  .appointment-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .appointment-card {
+    padding: 36px 28px !important;
+  }
+
+  .testimonial-card {
+    width: 280px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -671,12 +773,38 @@ textarea.form-control {
     font-size: 2.5rem;
   }
 
+  .page-title {
+    font-size: 2.4rem;
+  }
+
+  .appointment-title {
+    font-size: 1.8rem !important;
+  }
+
+  .appointment-subtitle {
+    font-size: 1rem;
+    margin-bottom: 28px !important;
+  }
+
+  .appointment-card {
+    padding: 28px 20px !important;
+  }
+
+  .appt-submit-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
   .floating-whatsapp {
     bottom: 20px;
     right: 20px;
     width: 50px;
     height: 50px;
     font-size: 24px;
+  }
+
+  .testimonial-card {
+    width: 260px;
   }
 }
 
@@ -748,6 +876,119 @@ textarea.form-control {
   display: flex;
   gap: 15px;
   flex-wrap: wrap;
+}
+
+/* Testimonials Carousel */
+.testimonials-carousel-wrapper {
+  margin: 30px 0 10px;
+}
+
+.testimonials-carousel {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  cursor: grab;
+}
+
+.testimonials-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.testimonials-track {
+  display: flex;
+  gap: 24px;
+  padding: 8px 2px 26px;
+  width: max-content;
+  animation: testimonials-scroll 48s linear infinite;
+  will-change: transform;
+}
+
+.testimonials-carousel:hover .testimonials-track,
+.testimonials-carousel.is-paused .testimonials-track {
+  animation-play-state: paused;
+}
+
+.testimonial-card {
+  background: #fff;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(0, 102, 204, 0.08);
+  padding: 24px;
+  width: 320px;
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  transition: var(--transition);
+}
+
+.testimonial-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: var(--shadow-md);
+}
+
+.testimonial-top {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.testimonial-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #f0f7ff;
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.testimonial-name {
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+}
+
+.testimonial-meta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.testimonial-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #4285F4;
+  background: #f0f7ff;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.testimonial-rating {
+  color: #FBBC05;
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+}
+
+.testimonial-text {
+  color: var(--text-color);
+  font-size: 0.98rem;
+  line-height: 1.65;
+}
+
+@keyframes testimonials-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 /* Elfsight Widget Wrapper */

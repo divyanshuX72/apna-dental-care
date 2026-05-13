@@ -54,7 +54,6 @@ project-folder/
 ├── about.html
 ├── services.html
 ├── gallery.html
-├── reviews.html
 ├── contact.html
 ├── appointment.html
 │
