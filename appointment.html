@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment | Apna Dental Clinic</title>
+    <meta name="description"
+        content="Schedule your dental appointment online at Apna Dental Clinic with Dr. Akshay Gandhi. Quick and easy booking via WhatsApp.">
+    <meta name="keywords" content="Book Dentist Online, Dental Appointment Vasai, Dr. Akshay Gandhi Appointment">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-tooth"></i> Apna Dental
+            </a>
+            <ul class="nav-links">
+                <li class="nav-item"><a href="index.html">Home</a></li>
+                <li class="nav-item"><a href="about.html">About Doctor</a></li>
+                <li class="nav-item"><a href="services.html">Services</a></li>
+                <li class="nav-item"><a href="gallery.html">Gallery</a></li>
+                <li class="nav-item"><a href="contact.html">Contact</a></li>
+                <li class="nav-item"><a href="appointment.html" class="btn btn-primary">Book Now</a></li>
+            </ul>
+            <button class="hamburger">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/919730543432" target="_blank" class="floating-whatsapp" title="Consult on WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container reveal">
+            <h1 class="page-title">Book an Appointment</h1>
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>/</span>
+                <span>Appointment</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Appointment Section -->
+    <section class="section" style="background-color: var(--light-bg);">
+        <div class="container">
+            <div class="card reveal" style="max-width: 800px; margin: 0 auto; text-align: left; padding: 50px;">
+                <h2 style="margin-bottom: 20px; text-align: center; font-size: 2.2rem;">Schedule Your Visit</h2>
+                <p style="text-align: center; margin-bottom: 40px; color: var(--text-color);">Fill out the form below
+                    and we'll confirm your appointment instantly via WhatsApp.</p>
+
+                <!-- Validation Error Banner -->
+                <div id="appt-error"
+                    style="display: none; background: #fff0f0; border: 1px solid #ffcccc; border-radius: 12px; padding: 14px 20px; margin-bottom: 24px; color: #c0392b; font-weight: 600; font-size: 0.95rem;">
+                </div>
+
+                <form id="appointment-form" novalidate>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+                        <div class="form-group">
+                            <label for="appt-name"
+                                style="display: block; margin-bottom: 10px; font-weight: 600; color: var(--accent-color);">Full
+                                Name *</label>
+                            <input id="appt-name" type="text" class="form-control" placeholder="E.g. Rahul Sharma">
+                        </div>
+                        <div class="form-group">
+                            <label for="appt-phone"
+                                style="display: block; margin-bottom: 10px; font-weight: 600; color: var(--accent-color);">Phone
+                                Number *</label>
+                            <input id="appt-phone" type="tel" class="form-control" placeholder="+91 xxxxx xxxxx">
+                        </div>
+                        <div class="form-group">
+                            <label for="appt-service"
+                                style="display: block; margin-bottom: 10px; font-weight: 600; color: var(--accent-color);">Service
+                                Required *</label>
+                            <select id="appt-service" class="form-control" style="appearance: none;">
+                                <option value="" disabled selected>Select a Service</option>
+                                <option value="General Checkup">General Checkup</option>
+                                <option value="Root Canal Treatment">Root Canal Treatment</option>
+                                <option value="Teeth Whitening">Teeth Whitening</option>
+                                <option value="Dental Implants">Dental Implants</option>
+                                <option value="Braces &amp; Aligners">Braces &amp; Aligners</option>
+                                <option value="Kids Dentistry">Kids Dentistry</option>
+                                <option value="Smile Designing">Smile Designing</option>
+                                <option value="Tooth Extraction">Tooth Extraction</option>
+                                <option value="Dental Cleaning">Dental Cleaning</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="appt-date"
+                                style="display: block; margin-bottom: 10px; font-weight: 600; color: var(--accent-color);">Preferred
+                                Date *</label>
+                            <input id="appt-date" type="date" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 24px;">
+                        <label for="appt-notes"
+                            style="display: block; margin-bottom: 10px; font-weight: 600; color: var(--accent-color);">Additional
+                            Notes</label>
+                        <textarea id="appt-notes" class="form-control"
+                            placeholder="Any specific problem or symptom..."></textarea>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 40px;">
+                        <button id="appt-submit" type="submit" class="btn btn-whatsapp appt-submit-btn">
+                            <i class="fa-brands fa-whatsapp appt-btn-icon"></i>
+                            <span class="appt-btn-text">Confirm Booking via WhatsApp</span>
+                            <span class="appt-btn-loading" style="display:none;"><i
+                                    class="fa-solid fa-circle-notch fa-spin"></i> Sending...</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid reveal">
+                <div class="footer-col">
+                    <a href="index.html" class="logo" style="color: white; margin-bottom: 20px;">
+                        <i class="fa-solid fa-tooth"></i> Apna Dental
+                    </a>
+                    <p>Advanced Dental Care With Modern Technology & Trusted Expertise by Dr. Akshay Gandhi.</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/apna.dental.clinic?utm_source=qr&igsh=MWJxanp1cTd5NDdrZw=="
+                            target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://wa.me/919730543432" target="_blank" title="WhatsApp"><i
+                                class="fa-brands fa-whatsapp"></i></a>
+                        <a href="tel:+919730543432" title="Call Us"><i class="fa-solid fa-phone"></i></a>
+                        <a href="mailto:info@apnadentalclinic.in" title="Email Us"><i
+                                class="fa-solid fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links" style="list-style: none;">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Doctor</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <p><i class="fa-solid fa-location-dot" style="margin-right: 10px;"></i> Achole Rd, Vasai East,
+                        Maharashtra 401208</p>
+                    <p><i class="fa-solid fa-phone" style="margin-right: 10px;"></i> +91 97305 43432</p>
+                    <p><i class="fa-solid fa-envelope" style="margin-right: 10px;"></i> info@apnadentalclinic.in</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Clinic Timings</h4>
+                    <p>Monday - Saturday:<br> 10:30 AM - 1:30 PM<br> 5:30 PM - 9:30 PM</p>
+                    <p>Sunday: 10:30 AM - 1:30 PM</p>
+                </div>
+            </div>
+            <div class="footer-bottom reveal">
+                <p>&copy; 2026 Apna Dental Clinic. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom JS -->
+    <script src="assets/js/script.js"></script>
+
+    <!-- WhatsApp Appointment Booking Script -->
+    <script>
+        (function () {
+            const WA_NUMBER = '919730543432';
+
+            const form = document.getElementById('appointment-form');
+            const nameEl = document.getElementById('appt-name');
+            const phoneEl = document.getElementById('appt-phone');
+            const serviceEl = document.getElementById('appt-service');
+            const dateEl = document.getElementById('appt-date');
+            const notesEl = document.getElementById('appt-notes');
+            const submitBtn = document.getElementById('appt-submit');
+            const errorBox = document.getElementById('appt-error');
+            const btnText = submitBtn.querySelector('.appt-btn-text');
+            const btnLoad = submitBtn.querySelector('.appt-btn-loading');
+            const btnIcon = submitBtn.querySelector('.appt-btn-icon');
+
+            /* ── Highlight invalid fields ── */
+            function markField(el, valid) {
+                el.style.borderColor = valid ? '' : '#e74c3c';
+                el.style.boxShadow = valid ? '' : '0 0 0 4px rgba(231,76,60,0.12)';
+            }
+
+            /* ── Validate & build WhatsApp message ── */
+            function validate() {
+                const errors = [];
+                const name = nameEl.value.trim();
+                const phone = phoneEl.value.trim();
+                const service = serviceEl.value;
+                const date = dateEl.value;
+
+                markField(nameEl, !!name);
+                markField(phoneEl, !!phone);
+                markField(serviceEl, !!service);
+                markField(dateEl, !!date);
+
+                if (!name) errors.push('Full Name is required.');
+                if (!phone) errors.push('Phone Number is required.');
+                if (!service) errors.push('Please select a service.');
+                if (!date) errors.push('Please choose a preferred date.');
+
+                return { errors, name, phone, service, date };
+            }
+
+            /* ── Format date nicely ── */
+            function formatDate(dateStr) {
+                if (!dateStr) return 'Not specified';
+                const [y, m, d] = dateStr.split('-');
+                const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                return `${d} ${months[parseInt(m, 10) - 1]} ${y}`;
+            }
+
+            /* ── Build the WhatsApp message ── */
+            function buildMessage(name, phone, service, date, notes) {
+                const lines = [
+                    'Hello Apna Dental Clinic,',
+                    '',
+                    'I would like to book an appointment.',
+                    '',
+                    '*Patient Details:*',
+                    '',
+                    `👤 *Full Name:* ${name}`,
+                    `📞 *Phone Number:* ${phone}`,
+                    `🦷 *Service:* ${service}`,
+                    `📅 *Preferred Date:* ${formatDate(date)}`,
+                    `📝 *Notes:* ${notes || 'None'}`,
+                    '',
+                    'Please confirm my appointment. Thank you!'
+                ];
+                return lines.join('\n');
+            }
+
+            /* ── Show / hide loading state ── */
+            function setLoading(on) {
+                submitBtn.disabled = on;
+                btnText.style.display = on ? 'none' : 'inline';
+                btnLoad.style.display = on ? 'inline' : 'none';
+                btnIcon.style.display = on ? 'none' : 'inline';
+            }
+
+            /* ── Main submit handler ── */
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const { errors, name, phone, service, date } = validate();
+
+                if (errors.length) {
+                    errorBox.innerHTML = '\u26A0\uFE0F ' + errors.join(' &nbsp;|&nbsp; ');
+                    errorBox.style.display = 'block';
+                    errorBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    return;
+                }
+
+                errorBox.style.display = 'none';
+
+                const notes = notesEl.value.trim();
+                const message = buildMessage(name, phone, service, date, notes);
+                const waURL = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`;
+
+                /* Show loading for 800 ms to give visual feedback, then open WA */
+                setLoading(true);
+                setTimeout(function () {
+                    window.open(waURL, '_blank', 'noopener,noreferrer');
+                    setLoading(false);
+                }, 800);
+            });
+
+            /* ── Clear field error on user input ── */
+            [nameEl, phoneEl, serviceEl, dateEl].forEach(function (el) {
+                el.addEventListener('input', function () { markField(el, true); });
+                el.addEventListener('change', function () { markField(el, true); });
+            });
+        })();
+    </script>
+</body>
+
+</html>
