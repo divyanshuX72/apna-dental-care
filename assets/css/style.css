@@ -184,6 +184,14 @@ img {
   color: var(--primary-color);
 }
 
+.navbar .logo img,
+.logo-img {
+  height: 42px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
 .nav-links {
   display: flex;
   align-items: center;
